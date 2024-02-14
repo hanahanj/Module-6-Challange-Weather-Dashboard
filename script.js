@@ -93,14 +93,30 @@ function getWeather(weatherAPICall) {
                // Perform any further actions with the data
             
                if(data != null){
-            
+                // get all current data from api
                 // get current unix date data
                 currentDateUNIX = data.current.dt;
-                console.log("Dt = " + currentDateUNIX);
-               
-                // convert UNIX to normal
+                 // convert UNIX to normal
                 currentDate = dayjs.unix(currentDateUNIX).format('MMM D, YYYY');
-                console.log("Current Date " + currentDate);
+                currentLoc = document.getElementById("location").value;
+                currentTemp = data.current.temp;
+                currentWind = data.current.wind_speed;
+                currentHum = data.current.humidity;
+                
+                var curDay = document.getElementById("currentDay");
+                var curLoc = document.getElementById("currentLocation");
+                var curTemp = document.getElementById("currentTemp");
+                var curWind = document.getElementById("currentWind");
+                var curHum = document.getElementById("currentHum");
+
+                curDay.innerHTML = currentDate;
+                curLoc.innerHTML = currentLoc;
+                curTemp.innerHTML = "Temperature: " + currentTemp + "&#8457";
+                curWind.innerHTML = "Wind: " + currentWind + " MPH";
+                curHum.innerHTML = "Humidity: " + currentHum + "%";
+                
+
+
 
 
 
