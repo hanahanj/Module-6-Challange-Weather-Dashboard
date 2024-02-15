@@ -104,17 +104,14 @@ function getWeather(weatherAPICall) {
                 currentHum = data.current.humidity;
                 currentIcon = data.current.weather[0].icon;
 
-                var currentIconUrl = "http://openweathermap.org/img/w/" + currentIcon + ".png";
-                console.log(currentIconUrl);
-            
-
-
-                var curIcon = document.getElementById("icon");
-                var curDay = document.getElementById("currentDay");
-                var curLoc = document.getElementById("currentLocation");
-                var curTemp = document.getElementById("currentTemp");
-                var curWind = document.getElementById("currentWind");
-                var curHum = document.getElementById("currentHum");
+                currentIconUrl = "http://openweathermap.org/img/w/" + currentIcon + ".png";
+    
+                curIcon = document.getElementById("icon");
+                curDay = document.getElementById("currentDay");
+                curLoc = document.getElementById("currentLocation");
+                curTemp = document.getElementById("currentTemp");
+                curWind = document.getElementById("currentWind");
+                curHum = document.getElementById("currentHum");
 
                 curDay.innerHTML = "Current Weather "+ currentDate;
                 curLoc.innerHTML = currentLoc;
@@ -123,13 +120,112 @@ function getWeather(weatherAPICall) {
                 curHum.innerHTML = "Humidity: " + currentHum + "%";
                 curIcon.src = currentIconUrl;
 
+                // get data for day 1 forcast
+                // day1DateUNIX = data.daily[1].dt;
+                // day1Date = dayjs.unix(day1DateUNIX).format('MMM D, YYYY');
+                // day1Temp = data.daily[1].temp.day;
+                // day1Wind = data.daily[1].wind_speed;
+                // day1Hum = data.daily[1].humidity;
+                // day1Icon = data.daily[1].weather[0].icon;
+                // day1IconUrl = "http://openweathermap.org/img/w/" + day1Icon + ".png";
+
+                // d1Icon = document.getElementById("day1icon");
+                // d1Day = document.getElementById("day1Day");
+                // d1Temp = document.getElementById("day1Temp");
+                // d1Wind = document.getElementById("day1Wind");
+                // d1Hum = document.getElementById("day1Hum");
+                // d1Icon.src = day1IconUrl;
+
+                // d1Day.innerHTML = day1Date;
+                // d1Temp.innerHTML = "Temperature: " + day1Temp + "&#8457";
+                // d1Wind.innerHTML = "Wind: " + day1Wind + " MPH";
+                // d1Hum.innerHTML = "Humidity: " + day1Hum + "%";
+                // d1Icon.src = currentIconUrl;
+
+                for (i=1; i<6; i++){
+                    forDateUNIX = data.daily[i].dt;
+                    forDate = dayjs.unix(forDateUNIX).format('MMM D, YYYY');
+                    forTemp = data.daily[i].temp.day;
+                    forWind = data.daily[i].wind_speed;
+                    forHum = data.daily[i].humidity;
+                    forIcon = data.daily[i].weather[0].icon;
+                    forIconUrl = "http://openweathermap.org/img/w/" + forIcon + ".png";
+
+                    if (i==1){
+                        icon = document.getElementById("day1icon");
+                        day = document.getElementById("day1Day");
+                        temp = document.getElementById("day1Temp");
+                        wind = document.getElementById("day1Wind");
+                        hum = document.getElementById("day1Hum");
+                        icon.src = forIconUrl;
+        
+                        day.innerHTML = forDate;
+                        temp.innerHTML = "Temperature: " + forTemp + "&#8457";
+                        wind.innerHTML = "Wind: " + forWind + " MPH";
+                        hum.innerHTML = "Humidity: " + forHum + "%";
+                        icon.src = forIconUrl;
 
 
+                    }else if (i==2){
+                        icon = document.getElementById("day2icon");
+                        day = document.getElementById("day2Day");
+                        temp = document.getElementById("day2Temp");
+                        wind = document.getElementById("day2Wind");
+                        hum = document.getElementById("day2Hum");
+                        icon.src = forIconUrl;
+        
+                        day.innerHTML = forDate;
+                        temp.innerHTML = "Temperature: " + forTemp + "&#8457";
+                        wind.innerHTML = "Wind: " + forWind + " MPH";
+                        hum.innerHTML = "Humidity: " + forHum + "%";
+                        icon.src = forIconUrl;
 
 
+                    } else if (i==3){
+                        icon = document.getElementById("day3icon");
+                        day = document.getElementById("day3Day");
+                        temp = document.getElementById("day3Temp");
+                        wind = document.getElementById("day3Wind");
+                        hum = document.getElementById("day3Hum");
+                        icon.src = forIconUrl;
+        
+                        day.innerHTML = forDate;
+                        temp.innerHTML = "Temperature: " + forTemp + "&#8457";
+                        wind.innerHTML = "Wind: " + forWind + " MPH";
+                        hum.innerHTML = "Humidity: " + forHum + "%";
+                        icon.src = forIconUrl;
 
-                
-             } else{
+                    } else if (i==4){
+                        icon = document.getElementById("day4icon");
+                        day = document.getElementById("day4Day");
+                        temp = document.getElementById("day4Temp");
+                        wind = document.getElementById("day4Wind");
+                        hum = document.getElementById("day4Hum");
+                        icon.src = forIconUrl;
+        
+                        day.innerHTML = forDate;
+                        temp.innerHTML = "Temperature: " + forTemp + "&#8457";
+                        wind.innerHTML = "Wind: " + forWind + " MPH";
+                        hum.innerHTML = "Humidity: " + forHum + "%";
+                        icon.src = forIconUrl;
+
+                    } else {
+                        icon = document.getElementById("day5icon");
+                        day = document.getElementById("day5Day");
+                        temp = document.getElementById("day5Temp");
+                        wind = document.getElementById("day5Wind");
+                        hum = document.getElementById("day5Hum");
+                        icon.src = forIconUrl;
+        
+                        day.innerHTML = forDate;
+                        temp.innerHTML = "Temperature: " + forTemp + "&#8457";
+                        wind.innerHTML = "Wind: " + forWind + " MPH";
+                        hum.innerHTML = "Humidity: " + forHum + "%";
+                        icon.src = forIconUrl;
+
+                    };     
+                };
+            } else{
                  console.error("no city data found");
              }
             
