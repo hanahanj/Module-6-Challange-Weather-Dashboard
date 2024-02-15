@@ -102,19 +102,26 @@ function getWeather(weatherAPICall) {
                 currentTemp = data.current.temp;
                 currentWind = data.current.wind_speed;
                 currentHum = data.current.humidity;
-                
+                currentIcon = data.current.weather[0].icon;
+
+                var currentIconUrl = "http://openweathermap.org/img/w/" + currentIcon + ".png";
+                console.log(currentIconUrl);
+            
+
+
+                var curIcon = document.getElementById("icon");
                 var curDay = document.getElementById("currentDay");
                 var curLoc = document.getElementById("currentLocation");
                 var curTemp = document.getElementById("currentTemp");
                 var curWind = document.getElementById("currentWind");
                 var curHum = document.getElementById("currentHum");
 
-                curDay.innerHTML = currentDate;
+                curDay.innerHTML = "Current Weather "+ currentDate;
                 curLoc.innerHTML = currentLoc;
                 curTemp.innerHTML = "Temperature: " + currentTemp + "&#8457";
                 curWind.innerHTML = "Wind: " + currentWind + " MPH";
                 curHum.innerHTML = "Humidity: " + currentHum + "%";
-                
+                curIcon.src = currentIconUrl;
 
 
 

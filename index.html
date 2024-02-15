@@ -15,9 +15,9 @@
 
       <div class="container text-center">
         <div class="row">
-          <div class="col">
+          <div class="col-3">
             <form>
-                <div class="form-group">
+                <div class="form-group ">
                   <label for="location">Location</label>
                   <input type="location" class="form-control" id="location" placeholder="Enter a City">
                 </div>
@@ -25,12 +25,13 @@
                 <button id="locationSubmit" type="submit" class="btn btn-primary">Submit</button>
               </form>
           </div>
-          <div class="col-9">
-            <div id="currentWeather" class="card bg-dark text-light p-3">
-                Current Weather
-                <div id="currentIcon"></div>
-                <p id="currentLocation" class="lead"></p>
-                <p id="currentDay" class="lead"></p>
+          <div class="col-6">
+            <div id="currentWeather" class="card bg-dark text-light h-1 ">
+                <p id="currentDay" ></p>
+                <div id="currentIcon">
+                    <img id="icon" src="" alt="Weather icon">
+                </div>
+                <div id="currentLocation" ></div>
                 <p id="currentTemp"></p>
                 <p id="currentWind"></p>
                 <p id="currentHum"></p>
