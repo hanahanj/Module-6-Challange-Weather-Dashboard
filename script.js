@@ -5,9 +5,6 @@ var units="&units=imperial";
 var APIkey="&appid=3d0c40b4d046ace56881f7b12ca49b61";
 var cityInput = "";
 
-
-
-
 locationSubmit.addEventListener("click", saveData);
 
 
@@ -26,7 +23,7 @@ function saveData(event) {
     console.log("Data saved: " + savedCity);
 
     var geocodeAPICall = geocodeapi+cityInput+APIkey;
-console.log(geocodeAPICall);
+    console.log(geocodeAPICall);
     if (cityInput != null){
         fetch(geocodeAPICall)
          .then(response => {
@@ -54,6 +51,11 @@ console.log(geocodeAPICall);
             cityLong = "&lon="+long;
             weatherAPICall = "https://" +weatherapi+cityLat+cityLong+units+APIkey;
             console.log("weather API Call: " + weatherAPICall);
+
+            // Set location to title
+            currentLoc = savedCity;
+            curLoc = document.getElementById("currentLocation");
+            curLoc.innerHTML = currentLoc;
             
             // Get Current Weather
             
@@ -73,6 +75,42 @@ console.log(geocodeAPICall);
            console.error("There was a problem with the fetch operation:", error);
          });
         };  
+
+
+        // Function to add item to localStorage and display all items
+    function addItem() {
+    var inputField = document.getElementById('location');
+    var item = inputField.value.trim(); // Trim whitespace
+    if (item !== '') { // Only proceed if the input is not empty
+        var items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+        items.push(item);
+        localStorage.setItem('items', JSON.stringify(items));
+        displayItems();
+        inputField.value = ''; // Clear input field
+    }
+}
+
+function displayItems() {
+    var itemButtons = document.getElementById('itemButtons');
+    itemButtons.innerHTML = ''; // Clear previous item buttons
+    var items = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+    items.forEach(function(item) {
+        var button = document.createElement('button');
+        button.textContent = item;
+        button.classList.add("btn", "btn-secondary", "m-1");
+         
+        button.addEventListener('click', function() {
+            document.getElementById('location').value = item; // Set input field value to the text content of the button
+            // You can do any action you want when a button is clicked, such as removing the item from localStorage
+            // For example, you could add: removeItem(item);
+
+            saveData(event);
+        });
+        itemButtons.appendChild(button);
+    });
+}
+addItem();
+displayItems();
 };
 
 
@@ -98,7 +136,8 @@ function getWeather(weatherAPICall) {
                 currentDateUNIX = data.current.dt;
                  // convert UNIX to normal
                 currentDate = dayjs.unix(currentDateUNIX).format('MMM D, YYYY');
-                currentLoc = document.getElementById("location").value;
+                
+                console.log("location " + currentLoc);
                 currentTemp = data.current.temp;
                 currentWind = data.current.wind_speed;
                 currentHum = data.current.humidity;
@@ -108,39 +147,16 @@ function getWeather(weatherAPICall) {
     
                 curIcon = document.getElementById("icon");
                 curDay = document.getElementById("currentDay");
-                curLoc = document.getElementById("currentLocation");
                 curTemp = document.getElementById("currentTemp");
                 curWind = document.getElementById("currentWind");
                 curHum = document.getElementById("currentHum");
 
-                curDay.innerHTML = "Current Weather "+ currentDate;
-                curLoc.innerHTML = currentLoc;
+                curDay.innerHTML = currentDate;
                 curTemp.innerHTML = "Temperature: " + currentTemp + "&#8457";
                 curWind.innerHTML = "Wind: " + currentWind + " MPH";
                 curHum.innerHTML = "Humidity: " + currentHum + "%";
                 curIcon.src = currentIconUrl;
 
-                // get data for day 1 forcast
-                // day1DateUNIX = data.daily[1].dt;
-                // day1Date = dayjs.unix(day1DateUNIX).format('MMM D, YYYY');
-                // day1Temp = data.daily[1].temp.day;
-                // day1Wind = data.daily[1].wind_speed;
-                // day1Hum = data.daily[1].humidity;
-                // day1Icon = data.daily[1].weather[0].icon;
-                // day1IconUrl = "http://openweathermap.org/img/w/" + day1Icon + ".png";
-
-                // d1Icon = document.getElementById("day1icon");
-                // d1Day = document.getElementById("day1Day");
-                // d1Temp = document.getElementById("day1Temp");
-                // d1Wind = document.getElementById("day1Wind");
-                // d1Hum = document.getElementById("day1Hum");
-                // d1Icon.src = day1IconUrl;
-
-                // d1Day.innerHTML = day1Date;
-                // d1Temp.innerHTML = "Temperature: " + day1Temp + "&#8457";
-                // d1Wind.innerHTML = "Wind: " + day1Wind + " MPH";
-                // d1Hum.innerHTML = "Humidity: " + day1Hum + "%";
-                // d1Icon.src = currentIconUrl;
 
                 for (i=1; i<6; i++){
                     forDateUNIX = data.daily[i].dt;
@@ -239,5 +255,5 @@ function getWeather(weatherAPICall) {
 
 
 
- 
+
 
