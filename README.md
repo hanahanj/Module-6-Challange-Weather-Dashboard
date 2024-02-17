@@ -26,7 +26,7 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 
-![Screencap](https://github.com/hanahanj/Module-6-Challange-Weather-Dashboard/blob/main/Assets/Mod5-Screencap.png) 
+![Screencap](https://github.com/hanahanj/Module-6-Challange-Weather-Dashboard/blob/main/Mod6-Screencap.png) 
 
 ![Link] https://hanahanj.github.io/Module-6-Challange-Weather-Dashboard/
 ![Repo]: https://github.com/hanahanj/Module-6-Challange-Weather-Dashboard
