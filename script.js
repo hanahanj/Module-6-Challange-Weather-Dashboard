@@ -99,10 +99,9 @@ function displayItems() {
         button.textContent = item;
         button.classList.add("btn", "btn-secondary", "m-1");
          
+        // when click on a past location button, add it to the location input and display the weather
         button.addEventListener('click', function() {
-            document.getElementById('location').value = item; // Set input field value to the text content of the button
-            // You can do any action you want when a button is clicked, such as removing the item from localStorage
-            // For example, you could add: removeItem(item);
+            document.getElementById('location').value = item; 
 
             saveData(event);
         });
