@@ -1,5 +1,5 @@
 
-var geocodeapi="http://api.openweathermap.org/geo/1.0/direct?q="
+var geocodeapi="https://api.openweathermap.org/geo/1.0/direct?q="
 var weatherapi="api.openweathermap.org/data/3.0/onecall?";
 var units="&units=imperial";
 var APIkey="&appid=3d0c40b4d046ace56881f7b12ca49b61";
